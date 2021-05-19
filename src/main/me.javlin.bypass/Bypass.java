@@ -20,8 +20,6 @@ public class Bypass {
             }
 
             exception.printStackTrace();
-        } catch (IllegalAccessException exception) {
-            exception.printStackTrace();
         }
     }
 
@@ -43,7 +41,7 @@ public class Bypass {
 
     public static boolean isByteLast(int varint) { return (varint & 0b10000000) == 0; }
 
-    public static void run() throws WinDivertException, IllegalAccessException {
+    public static void run() throws WinDivertException {
         System.out.println("Starting packet interceptor...");
 
         WinDivert intercept = new WinDivert("tcp.DstPort == 25565 and tcp.PayloadLength > 0");
