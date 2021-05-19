@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LunarBypass:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/LunarBypass_jar</output-path>
+    <root id="archive" name="LunarBypass.jar">
+      <element id="module-output" name="LunarBypass" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/net/java/dev/jna/jna/4.2.2/jna-4.2.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/github/ffalcinelli/jdivert/1.1/jdivert-1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/net/java/dev/jna/jna-platform/4.2.2/jna-platform-4.2.2.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
