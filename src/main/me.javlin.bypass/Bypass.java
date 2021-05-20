@@ -1,8 +1,12 @@
+import com.github.ffalcinelli.jdivert.Enums;
 import com.github.ffalcinelli.jdivert.Packet;
 import com.github.ffalcinelli.jdivert.WinDivert;
 import com.github.ffalcinelli.jdivert.exceptions.WinDivertException;
 
+import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.Arrays;
 
 public class Bypass {
     public static void main(String[] args) {
@@ -18,6 +22,24 @@ public class Bypass {
             exception.printStackTrace();
         }
     }
+
+    public static int getVarIntLength(byte[] varint) {
+        if(varint.length == 0)
+            return -1;
+
+        int count = -1;
+
+        do {
+            count++;
+
+            if(count > 5)
+                return -1;
+        }while(!isByteLast(varint[count]));
+
+        return count + 1;
+    }
+
+    public static boolean isByteLast(int varint) { return (varint & 0b10000000) == 0; }
 
     public static void run() throws WinDivertException {
         System.out.println("Starting packet interceptor...");
@@ -59,24 +81,5 @@ public class Bypass {
         }
 
         intercept.close();
-    }
-
-    public static int getVarIntLength(byte[] varint) {
-        if(varint.length == 0)
-            return 0;
-
-        int count = 0;
-
-        while(!isByteLast(varint[count]))
-            count++;
-
-        if(count > 5)
-            return 0;
-
-        return count + 1;
-    }
-
-    public static boolean isByteLast(int varint) {
-        return (varint & 0b10000000) == 0;
     }
 }
